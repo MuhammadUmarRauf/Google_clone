@@ -12,7 +12,9 @@ class SearchsButtons extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SearchButton(title: 'Google Search'),
+            // SearchButton(title: 'Google Search'),
+            // SizedBox(width: 10),
+            // SearchButton(title: 'I\'m feeling Lucky'),
           ],
         ),
       ],

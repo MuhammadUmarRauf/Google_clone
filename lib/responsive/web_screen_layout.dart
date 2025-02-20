@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_clone/widgets/translation_button.dart';
 import 'package:google_clone/widgets/web/search_button.dart';
+import 'package:google_clone/widgets/web/web_footer.dart';
 import '../../colors.dart';
 import 'package:google_clone/widgets/search.dart';
 
@@ -9,7 +11,7 @@ class WebScreenLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: backgroundColor,
@@ -35,26 +37,18 @@ class WebScreenLayout extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(
-            width: 10,
-          ),
+          const SizedBox(width: 10),
           IconButton(
             onPressed: () {},
             icon: SvgPicture.asset(
               'assets/images/more-apps.svg',
               color: Colors.white,
             ),
-            // colorFilter:
-            //     const ColorFilter.mode(primaryColor, BlendMode.srcIn),
-            // ),
           ),
-          const SizedBox(
-            width: 10,
-          ),
+          const SizedBox(width: 10),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0).copyWith(
-              right: 10,
-            ),
+            padding:
+                const EdgeInsets.symmetric(vertical: 10.0).copyWith(right: 10),
             child: MaterialButton(
               onPressed: () {},
               height: 50,
@@ -67,29 +61,40 @@ class WebScreenLayout extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 5, right: 5),
-        child: Column(
-          children: [
-            SizedBox(
-              height: Size.height * 0.25,
+      body: Column(
+        children: [
+          // Centered Logo and Search Box
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Google Logo
+                SvgPicture.asset(
+                  'assets/images/google-logo.svg', // Ensure the correct path
+                  height: 100, // Adjust as needed
+                ),
+                const SizedBox(height: 30),
+                // Search Bar
+                const Search(),
+                const SizedBox(height: 30),
+                // Search Buttons
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SearchButton(title: 'Google Search'),
+                    const SizedBox(width: 20),
+                    SearchButton(title: 'I\'m Feeling Lucky'),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                // Translation Button
+                const TranslationButton(),
+              ],
             ),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Search(),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  SearchButton(
-                    title: 'Google Search',
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+          // Footer at the bottom
+          const WebFooter(),
+        ],
       ),
     );
   }
